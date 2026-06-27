@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Step2PersonalInfo from '../steps/Step2PersonalInfo';
 import Step1LoanType from '../steps/Step1LoanType';
 import useFormStore from '../../store/formStore';
 
@@ -74,10 +75,10 @@ const Wizard = () => {
                         <div
                             key={step.id}
                             className={`text-xs text-center ${step.id === currentStep
-                                    ? 'text-primary font-bold'
-                                    : step.id < currentStep
-                                        ? 'text-accent'
-                                        : 'text-gray-400'
+                                ? 'text-primary font-bold'
+                                : step.id < currentStep
+                                    ? 'text-accent'
+                                    : 'text-gray-400'
                                 }`}
                         >
                             {step.id}
@@ -96,7 +97,8 @@ const Wizard = () => {
 
                     {/* Placeholder - बाद में actual step components आएंगे */}
                     {currentStep === 1 && <Step1LoanType />}
-                    {currentStep !== 1 && (
+                    {currentStep === 2 && <Step2PersonalInfo />}
+                    {currentStep > 2 && (
                         <div className="text-gray-500 text-center py-12">
                             Step {currentStep} content coming soon...
                         </div>
