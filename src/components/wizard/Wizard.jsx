@@ -4,6 +4,7 @@ import Step3KYC from '../steps/Step3KYC';
 import Step4Address from '../steps/Step4Address';
 import Step5Employment from '../steps/Step5Employment';
 import Step6CoApplicant from '../steps/Step6CoApplicant';
+import Step7Documents from '../steps/Step7Documents';
 import Step1LoanType from '../steps/Step1LoanType';
 import useFormStore from '../../store/formStore';
 
@@ -106,8 +107,8 @@ const Wizard = () => {
                     {currentStep === 4 && <Step4Address />}
                     {currentStep === 5 && <Step5Employment />}
                     {currentStep === 6 && <Step6CoApplicant />}
-                    {currentStep === 7 && <div>Step 7 coming soon</div>}
-                    {currentStep === 8 && <div>Step 8 coming soon</div>}
+                    {currentStep === 7 && <Step7Documents />}
+                    {currentStep === 8 && <Step8Review />}
                 </div>
 
                 {/* Navigation Buttons */}
