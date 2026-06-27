@@ -5,6 +5,7 @@ import Step4Address from '../steps/Step4Address';
 import Step5Employment from '../steps/Step5Employment';
 import Step6CoApplicant from '../steps/Step6CoApplicant';
 import Step7Documents from '../steps/Step7Documents';
+import Step8Review from '../steps/Step8Review';
 import Step1LoanType from '../steps/Step1LoanType';
 import useFormStore from '../../store/formStore';
 
