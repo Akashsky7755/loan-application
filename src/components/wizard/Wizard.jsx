@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Step2PersonalInfo from '../steps/Step2PersonalInfo';
 import Step3KYC from '../steps/Step3KYC';
+import Step4Address from '../steps/Step4Address';
 import Step1LoanType from '../steps/Step1LoanType';
 import useFormStore from '../../store/formStore';
 
@@ -100,7 +101,8 @@ const Wizard = () => {
                     {currentStep === 1 && <Step1LoanType />}
                     {currentStep === 2 && <Step2PersonalInfo />}
                     {currentStep === 3 && <Step3KYC />}
-                    {currentStep > 3 && (
+                    {currentStep === 4 && <Step4Address />}
+                    {currentStep > 4 && (
                         <div className="text-gray-500 text-center py-12">
                             Step {currentStep} content coming soon...
                         </div>
