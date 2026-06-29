@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useFormStore from '../../store/formStore';
+import { useForm } from 'react-hook-form';
 
 const PIN_DATA = {
   '110001': { city: 'New Delhi', state: 'Delhi', postOffice: 'Connaught Place' },
