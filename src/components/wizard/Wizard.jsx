@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-
+import Step1LoanType from '../steps/Step1LoanType';
 import Step2PersonalInfo from '../steps/Step2PersonalInfo';
 import Step3KYC from '../steps/Step3KYC';
 import Step4Address from '../steps/Step4Address';
@@ -7,8 +7,9 @@ import Step5Employment from '../steps/Step5Employment';
 import Step6CoApplicant from '../steps/Step6CoApplicant';
 import Step7Documents from '../steps/Step7Documents';
 import Step8Review from '../steps/Step8Review';
-import Step1LoanType from '../steps/Step1LoanType';
 import useFormStore from '../../store/formStore';
+import useAutoSave from '../../hooks/useAutoSave';
+import useFormPersistence from '../../hooks/useFormPersistence';
 
 const STEPS = [
   { id: 1, title: 'Loan Type' },
@@ -22,8 +23,14 @@ const STEPS = [
 ];
 
 const Wizard = () => {
-  const { currentStep, setCurrentStep, formData, updateStepData } = useFormStore();
+  const { currentStep, setCurrentStep, formData } = useFormStore();
   const submitRef = useRef(null);
+
+  // Auto-Save hook
+  const { saveToStorage } = useAutoSave(formData, currentStep);
+
+  // Resume Modal hook
+  const { showResumeModal, draftInfo, handleResume, handleStartFresh } = useFormPersistence();
 
   const isStep6Active = () => {
     const loanType = formData.step1?.loanType;
@@ -35,11 +42,9 @@ const Wizard = () => {
   };
 
   const goNext = () => {
-    // Submit button trigger करें ताकि data save हो
     if (submitRef.current) {
       submitRef.current.click();
     }
-
     setTimeout(() => {
       const nextStep = currentStep + 1;
       if (!isStep6Active() && nextStep === 6) {
@@ -63,13 +68,48 @@ const Wizard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+
+      {/* ===== RESUME MODAL ===== */}
+      {showResumeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <h2 className="text-xl font-bold text-gray-800 mb-2">
+              📋 Saved Application Found!
+            </h2>
+            <p className="text-gray-600 mb-2">
+              You have a saved <strong>{draftInfo?.loanType}</strong> loan application.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              Last saved: {draftInfo?.timestamp
+                ? new Date(draftInfo.timestamp).toLocaleString()
+                : 'Unknown'}
+              {' '}(Step {draftInfo?.step})
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleResume}
+                className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:opacity-90"
+              >
+                ▶️ Resume Application
+              </button>
+              <button
+                onClick={handleStartFresh}
+                className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300"
+              >
+                🔄 Start Fresh
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== HEADER ===== */}
       <div className="bg-primary text-white py-4 px-6">
         <h1 className="text-2xl font-bold">LendSwift</h1>
         <p className="text-sm opacity-80">Loan Application</p>
       </div>
 
-      {/* Progress Bar */}
+      {/* ===== PROGRESS BAR ===== */}
       <div className="bg-white shadow px-6 py-4">
         <div className="flex justify-between text-xs text-gray-500 mb-2">
           <span>Step {currentStep} of 8</span>
@@ -99,7 +139,7 @@ const Wizard = () => {
         </div>
       </div>
 
-      {/* Step Content */}
+      {/* ===== STEP CONTENT ===== */}
       <div className="max-w-2xl mx-auto p-6">
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold text-primary mb-6">
@@ -117,7 +157,7 @@ const Wizard = () => {
           {currentStep === 8 && <Step8Review />}
         </div>
 
-        {/* Navigation */}
+        {/* ===== NAVIGATION BUTTONS ===== */}
         <div className="flex justify-between mt-6">
           <button
             onClick={goPrev}
@@ -136,6 +176,7 @@ const Wizard = () => {
           )}
         </div>
       </div>
+
     </div>
   );
 };
