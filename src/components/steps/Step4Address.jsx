@@ -24,7 +24,7 @@ const INDIAN_STATES = [
   'Uttarakhand', 'West Bengal',
 ];
 
-const Step4Address = () => {
+const Step4Address = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
   const [sameAsPermanent, setSameAsPermanent] = useState(false);
   const [pinLoading, setPinLoading] = useState(false);
@@ -66,7 +66,7 @@ const Step4Address = () => {
   };
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       <h3 className="font-semibold text-gray-700 text-lg">Current Address</h3>
 
@@ -262,6 +262,7 @@ const Step4Address = () => {
           </select>
         </div>
       )}
+      <button type="submit" ref={submitRef} className="hidden" />
 
     </form>
   );

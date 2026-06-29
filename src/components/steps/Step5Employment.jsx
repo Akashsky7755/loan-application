@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
 
-const Step5Employment = () => {
+const Step5Employment = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -12,7 +12,7 @@ const Step5Employment = () => {
   const employmentType = watch('employmentType');
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       {/* Employment Type */}
       <div>
@@ -275,7 +275,7 @@ const Step5Employment = () => {
           </div>
         </div>
       )}
-
+       <button type="submit" ref={submitRef} className="hidden" />
     </form>
   );
 };

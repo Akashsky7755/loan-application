@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useFormStore from '../../store/formStore';
 
-const Step3KYC = () => {
+const Step3KYC = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
   const [panStatus, setPanStatus] = useState('idle');
   const [aadhaarStatus, setAadhaarStatus] = useState('idle');
@@ -75,7 +75,7 @@ const Step3KYC = () => {
   };
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       {/* PAN Number */}
       <div>
@@ -166,7 +166,7 @@ const Step3KYC = () => {
         />
         {errors.voterId && <p className="text-error text-sm mt-1" role="alert">{errors.voterId.message}</p>}
       </div>
-
+    <button type="submit" ref={submitRef} className="hidden" />
     </form>
   );
 };

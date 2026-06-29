@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
 
-const Step1LoanType = () => {
+const Step1LoanType = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -36,7 +36,7 @@ const Step1LoanType = () => {
   };
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       {/* Loan Type */}
       <div>
@@ -72,7 +72,7 @@ const Step1LoanType = () => {
             {...register('loanAmount', {
               required: 'Loan amount is required',
               min: { value: 50000, message: 'Minimum amount is ₹50,000' },
-              max: { value: getLoanAmountMax(), message: `Maximum amount is ₹${getLoanAmountMax().toLocaleString('en-IN')}` },
+              max: { value: getLoanAmountMax(), message: `Maximum ₹${getLoanAmountMax().toLocaleString('en-IN')}` },
             })}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Enter loan amount"
@@ -142,6 +142,9 @@ const Step1LoanType = () => {
           <p className="text-error text-sm mt-1" role="alert">{errors.referralCode.message}</p>
         )}
       </div>
+
+      {/* Hidden Submit Button */}
+      <button type="submit" ref={submitRef} className="hidden" />
 
     </form>
   );

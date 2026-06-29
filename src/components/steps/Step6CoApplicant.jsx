@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
 
-const Step6CoApplicant = () => {
+const Step6CoApplicant = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -12,7 +12,7 @@ const Step6CoApplicant = () => {
   const hasCoApplicant = watch('hasCoApplicant');
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       {/* Co-Applicant Required Info */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -158,7 +158,7 @@ const Step6CoApplicant = () => {
           </p>
         </div>
       )}
-
+      <button type="submit" ref={submitRef} className="hidden" />
     </form>
   );
 };

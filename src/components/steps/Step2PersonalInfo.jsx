@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
 
-const Step2PersonalInfo = () => {
+const Step2PersonalInfo = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -11,7 +11,7 @@ const Step2PersonalInfo = () => {
   const onSubmit = (data) => updateStepData('step2', data);
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
       {/* Full Name */}
       <div>
@@ -170,6 +170,9 @@ const Step2PersonalInfo = () => {
         />
         {errors.alternateMobile && <p className="text-error text-sm mt-1" role="alert">{errors.alternateMobile.message}</p>}
       </div>
+
+      {/* Hidden Submit Button */}
+      <button type="submit" ref={submitRef} className="hidden" />
 
     </form>
   );
