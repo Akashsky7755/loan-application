@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
+import { useForm } from 'react-hook-form';
 
 const Step1LoanType = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
