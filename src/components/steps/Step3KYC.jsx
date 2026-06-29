@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useFormStore from '../../store/formStore';
+import { useForm } from 'react-hook-form';
 
 const Step3KYC = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
