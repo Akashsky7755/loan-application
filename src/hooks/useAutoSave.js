@@ -171,3 +171,7 @@ const useAutoSave = (formData, currentStep, interval = 30000) => {
 };
 
 export default useAutoSave;
+// useAutoSave Hook
+// Saves form data every 30 seconds to LocalStorage
+// AES-256-GCM encryption via Web Crypto API
+// TTL: 72 hours
