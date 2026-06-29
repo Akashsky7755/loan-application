@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import useFormStore from '../../store/formStore';
+import { useForm } from 'react-hook-form';
 
 const Step2PersonalInfo = ({ submitRef }) => {
   const { formData, updateStepData } = useFormStore();
