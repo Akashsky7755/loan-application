@@ -15,7 +15,9 @@ const decrypt = async (encryptedText) => {
       false,
       ['decrypt']
     );
-    
+    // useFormPersistence Hook
+// Checks for saved drafts on page load
+// Shows Resume/Start Fresh modal
     const { iv, data } = JSON.parse(encryptedText);
     
     const decrypted = await window.crypto.subtle.decrypt(
