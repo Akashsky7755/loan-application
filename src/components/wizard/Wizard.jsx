@@ -10,6 +10,7 @@ import Step8Review from '../steps/Step8Review';
 import useFormStore from '../../store/formStore';
 import useAutoSave from '../../hooks/useAutoSave';
 import useFormPersistence from '../../hooks/useFormPersistence';
+import { useRef } from 'react';
 
 const STEPS = [
   { id: 1, title: 'Loan Type' },
