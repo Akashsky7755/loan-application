@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .vercel
+# .gitignore खोलें और यह add करें:
+echo "*.log" >> .gitignore
+echo "dist/" >> .gitignore
+echo ".env" >> .gitignore
