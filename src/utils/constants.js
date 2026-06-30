@@ -52,3 +52,10 @@ export const PROCESSING_FEE = {
   min: 2000,
   max: 25000,
 };
+export const DOCUMENT_TYPES = {
+  PAN_CARD: 'panCard',
+  AADHAAR_FRONT: 'aadhaarFront',
+  AADHAAR_BACK: 'aadhaarBack',
+  BANK_STATEMENT: 'bankStatement',
+  PHOTOGRAPH: 'photograph',
+};
