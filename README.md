@@ -118,3 +118,8 @@ EMI = P × r × (1+r)^n / ((1+r)^n – 1)
 - P = Principal Amount
 - r = Monthly Interest Rate
 - n = Tenure in Months
+## Validation Rules
+- PAN: AAAAA9999A format with entity type check
+- Aadhaar: 12 digits with Verhoeff checksum
+- GST: 15-character format
+- Mobile: 10 digits starting with 6-9
